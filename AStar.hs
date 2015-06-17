@@ -1,7 +1,22 @@
+-----------------------------------------------------------------------------
+-- |
+-- Module      :  AStar
+-- Copyright   :  (c) Lukas Jelinek 2015
+-- License     :  MIT (see the file LICENSE)
+-- 
+-- Maintainer  :  lukas.jelinek1@gmail.com
+-- Stability   :  experimental
+-- Portability :  unknown
 --
--- Copyright (c) 2015 Lukas Jelinek 
--- MIT license see http://opensource.org/licenses/MIT
+-- Implementation of A* algorithm with potential to use it as Dijkstra or BFS 
 --
+-----------------------------------------------------------------------------
+module AStar(
+  Graph,Edge,
+  aStar,newGraph,heuristic,
+  grafDIJ,grafLINE,grafBFS,grafCHAR,grafGEN2,grafGEN,grafFOREST 
+) where
+
 import System.Environment
 import Data.Array
 import Data.Ix
@@ -16,8 +31,8 @@ type Heuristic k nd =  (nd -> nd -> k)
 type Used k nd = Map nd k
 
 -- | 'main' runs the main program
---main :: IO ()
---main = print "hello"
+main :: IO ()
+main = print "Astar"
 
 -- receives graph ,start position and goal position. Returns vertexes which lay on the path in the order based on heuristic function.
 -- Minimalising cost.
@@ -165,3 +180,4 @@ grafCHAR = Graph ['a','b','c','d'] (listArray ('a','d') [[Edge 'a' 'b' 0],[Edge 
 grafGEN = newGraph [0,1,2,3] [Edge 0 1 2 ,Edge 0 2 6, Edge 1 2 1, Edge 1 3 5,Edge 2 1 1, Edge 2 3 1]
 grafGEN2 = newGraph ['a','b','c','d'] [Edge 'a' 'b' 0,Edge 'b' 'c' 0,Edge 'c' 'd' 0]
 grafFOREST = newGraph [0,1,2,3,4,5,6] [Edge 0 1 2,Edge 1 0 2, Edge 2 3 2, Edge 3 2 2,Edge 4 5 2]
+

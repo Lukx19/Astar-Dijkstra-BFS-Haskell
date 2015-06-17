@@ -2,12 +2,15 @@
 This package contains standard implementation of A*. It is implemented genericaly so structure of the node should be implemented by user. 
 Package containes quick generator of graph suitable for algorithm. This algorith is useful as Dijkstra algorithm. For this usage just inser heuristic function which always returns 0. In case you want to use it as BFS then in definition of edges in graph is important to insert 0 for each node's distance
 
-## Requires
+## Installing
 For correct usage if this package you must install following dependencies:
  
-    cabal install Data.Array
-    cabal install Data.Map
-    cabal install Data.PQueue.Prio.Min
+    git clone https://github.com/Lukx19/Astar-Dijkstra-BFS-Haskell
+    cd Astar-Dijkstra-BFS-Haskell
+    cabal configure
+    cabal build
+    cabal install
+    cd ..
     
 
 ## Custom graph nodes
@@ -25,6 +28,9 @@ Graph might be constructed manually or with function newGraph.
 
 ## Algorith usage
 Algortim receives from user constructed graph, starting node, goal node and heuristic function. It returns list of all nodes on the shortest path in correct order.
+    
+    ghci -package astar
+    in ghci -> :module AStar
 
     aStar::Num key
       => Ord key 
@@ -35,9 +41,4 @@ Algortim receives from user constructed graph, starting node, goal node and heur
       -> (nd_t -> nd_t -> key)  -- heuristic function receiving two nodes and returning numeric value
       -> [nd_t]                 -- return list of nodes on the shortest path
     aStar grafGEN 0 3 heuristic
-
-## Licensing
-This package is under MIT license
-    
-    MIT license see http://opensource.org/licenses/MIT
 
